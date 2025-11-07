@@ -1,0 +1,372 @@
+/* ====================================
+   TASKBAR (Windows 11 Style)
+   ==================================== */
+
+.taskbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(30px);
+    border-top: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--spacing-md);
+    z-index: 9996;
+}
+
+/* ====================================
+   START BUTTON
+   ==================================== */
+
+.start-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.start-btn:hover {
+    background: rgba(0, 120, 212, 0.1);
+}
+
+.start-btn:active {
+    transform: scale(0.95);
+}
+
+.start-btn.active {
+    background: rgba(0, 120, 212, 0.15);
+}
+
+.start-btn i {
+    font-size: 20px;
+    color: var(--primary);
+}
+
+.start-btn span {
+    font-size: 14px;
+}
+
+/* ====================================
+   TASKBAR APPS
+   ==================================== */
+
+.taskbar-apps {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex: 1;
+    margin: 0 var(--spacing-md);
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.taskbar-apps::-webkit-scrollbar {
+    display: none;
+}
+
+.taskbar-app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+    min-width: 60px;
+    height: 40px;
+}
+
+.taskbar-app:hover {
+    background: rgba(0, 120, 212, 0.1);
+}
+
+.taskbar-app.active {
+    background: rgba(0, 120, 212, 0.15);
+}
+
+.taskbar-app.active::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 2px 2px 0 0;
+}
+
+.taskbar-app-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.taskbar-app-icon i {
+    font-size: 18px;
+    color: var(--text-primary);
+}
+
+.taskbar-app-label {
+    font-size: 13px;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+/* ====================================
+   SYSTEM TRAY
+   ==================================== */
+
+.system-tray {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.tray-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.tray-icon:hover {
+    background: rgba(0, 120, 212, 0.1);
+}
+
+.tray-icon i {
+    font-size: 16px;
+    color: var(--text-primary);
+}
+
+/* VPN Indicator */
+#vpn-indicator {
+    position: relative;
+}
+
+#vpn-indicator i {
+    transition: all var(--transition-fast);
+}
+
+#vpn-indicator.active {
+    background: rgba(16, 185, 129, 0.15);
+    animation: vpnPulse 2s infinite;
+}
+
+#vpn-indicator.active i {
+    color: var(--success);
+    font-weight: 900;
+}
+
+#vpn-indicator.active::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 10px;
+    height: 10px;
+    background: var(--success);
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+    animation: vpnDot 1.5s infinite;
+}
+
+#vpn-indicator.active::before {
+    content: 'SECURE';
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 8px;
+    font-weight: 700;
+    color: var(--success);
+    background: rgba(16, 185, 129, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+@keyframes vpnPulse {
+    0%, 100% {
+        background: rgba(16, 185, 129, 0.15);
+    }
+    50% {
+        background: rgba(16, 185, 129, 0.25);
+    }
+}
+
+@keyframes vpnDot {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.2);
+    }
+}
+
+/* USB Indicator */
+#usb-indicator.active i {
+    color: var(--warning);
+}
+
+#usb-indicator.active::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 8px;
+    height: 8px;
+    background: var(--warning);
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+/* Power Button */
+.power-btn:hover i {
+    color: var(--error);
+}
+
+/* ====================================
+   CLOCK
+   ==================================== */
+
+.clock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.clock:hover {
+    background: rgba(0, 120, 212, 0.1);
+}
+
+#time {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+#date {
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+/* ====================================
+   TASKBAR ANIMATIONS
+   ==================================== */
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.taskbar-app.notification {
+    animation: bounce 0.5s ease;
+}
+
+/* ====================================
+   DARK MODE - TASKBAR
+   ==================================== */
+
+body.dark-mode .taskbar {
+    background: var(--bg-secondary);
+    border-top-color: var(--glass-border);
+}
+
+body.dark-mode .start-btn {
+    color: var(--text-primary);
+}
+
+body.dark-mode .start-btn:hover {
+    background: rgba(0, 120, 212, 0.2);
+}
+
+body.dark-mode .start-btn.active {
+    background: rgba(0, 120, 212, 0.3);
+}
+
+body.dark-mode .taskbar-app {
+    color: var(--text-primary);
+}
+
+body.dark-mode .taskbar-app:hover {
+    background: rgba(0, 120, 212, 0.2);
+}
+
+body.dark-mode .taskbar-app.active {
+    background: rgba(0, 120, 212, 0.3);
+}
+
+body.dark-mode .taskbar-app-icon i {
+    color: var(--text-primary);
+}
+
+body.dark-mode .taskbar-app-label {
+    color: var(--text-primary);
+}
+
+body.dark-mode .tray-icon {
+    color: var(--text-primary);
+}
+
+body.dark-mode .tray-icon:hover {
+    background: rgba(0, 120, 212, 0.2);
+}
+
+body.dark-mode .tray-icon i {
+    color: var(--text-primary);
+}
+
+body.dark-mode .clock {
+    color: var(--text-primary);
+}
+
+body.dark-mode .clock:hover {
+    background: rgba(0, 120, 212, 0.2);
+}
+
+body.dark-mode #time {
+    color: var(--text-primary);
+}
+
+body.dark-mode #date {
+    color: var(--text-secondary);
+}
+
+body.dark-mode #vpn-indicator.active::after {
+    border-color: var(--bg-secondary);
+}
+
+body.dark-mode #usb-indicator.active::after {
+    border-color: var(--bg-secondary);
+}
+

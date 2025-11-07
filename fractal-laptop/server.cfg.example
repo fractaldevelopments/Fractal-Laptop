@@ -1,0 +1,28 @@
+# ===================================
+# FRACTAL LAPTOP-OS - Server.cfg Example
+# ===================================
+# Add these lines to your server.cfg
+# ===================================
+
+# ===================================
+# ENSURE LAPTOP-OS RESOURCE
+# ===================================
+ensure fractal-laptop
+
+# ===================================
+# NOTES:
+# ===================================
+# 1. Place AFTER framework (qb-core/esx)
+# 2. Place AFTER inventory (lj-inventory)
+# 3. Place AFTER target (qb-target)
+# 4. Place BEFORE any scripts that depend on it
+#
+# Example order:
+# ensure qb-core
+# ensure oxmysql
+# ensure lj-inventory
+# ensure qb-target
+# ensure fractal-laptop      <-- Your script here
+# ensure fractal-cryptominer <-- If you have it
+# ===================================
+

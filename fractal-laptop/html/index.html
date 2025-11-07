@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FractalOS</title>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/desktop.css">
+    <link rel="stylesheet" href="css/taskbar.css">
+    <link rel="stylesheet" href="css/windows.css">
+    <link rel="stylesheet" href="css/apps.css">
+</head>
+<body>
+    <!-- Main Laptop Container -->
+    <div id="laptop-container" class="hidden">
+        
+        <!-- Boot Screen -->
+        <div id="boot-screen" class="boot-screen">
+            <div class="boot-logo">
+                <i class="fas fa-laptop"></i>
+                <h1>FractalOS</h1>
+            </div>
+            <div class="boot-loader">
+                <div class="loader-bar"></div>
+            </div>
+        </div>
+        
+        <!-- Desktop -->
+        <div id="desktop" class="desktop">
+            <!-- Wallpaper -->
+            <div id="wallpaper" class="wallpaper"></div>
+            
+            <!-- Desktop Icons -->
+            <div id="desktop-icons" class="desktop-icons">
+                <!-- Icons will be generated dynamically -->
+            </div>
+            
+            <!-- Windows Container -->
+            <div id="windows-container" class="windows-container">
+                <!-- Windows will be created dynamically -->
+            </div>
+            
+            <!-- Taskbar -->
+            <div id="taskbar" class="taskbar">
+                <!-- Start Button -->
+                <div id="start-btn" class="start-btn">
+                    <i class="fas fa-fire"></i>
+                    <span>Start</span>
+                </div>
+                
+                <!-- Running Apps -->
+                <div id="taskbar-apps" class="taskbar-apps">
+                    <!-- Running apps will appear here -->
+                </div>
+                
+                <!-- System Tray -->
+                <div id="system-tray" class="system-tray">
+                    <!-- VPN Indicator -->
+                    <div id="vpn-indicator" class="tray-icon" title="VPN: Disabled">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    
+                    <!-- Clock -->
+                    <div id="clock" class="clock">
+                        <span id="time">12:00</span>
+                        <span id="date">Mon, Jan 1</span>
+                    </div>
+                    
+                    <!-- Power Button -->
+                    <div id="power-btn" class="tray-icon power-btn" title="Shut Down">
+                        <i class="fas fa-power-off"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Start Menu -->
+            <div id="start-menu" class="start-menu hidden">
+                <div class="start-menu-header">
+                    <h3>FractalOS</h3>
+                    <div class="start-menu-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search apps..." id="app-search">
+                    </div>
+                </div>
+                
+                <div class="start-menu-content">
+                    <h4>All Apps</h4>
+                    <div id="start-menu-apps" class="start-menu-apps">
+                        <!-- Apps will be generated here -->
+                    </div>
+                </div>
+                
+                <div class="start-menu-footer">
+                    <div class="user-info">
+                        <i class="fas fa-user-circle"></i>
+                        <span id="username">User</span>
+                    </div>
+                    <div class="start-menu-actions">
+                        <button class="btn-icon" title="Settings">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                        <button class="btn-icon" id="start-power-btn" title="Shut Down">
+                            <i class="fas fa-power-off"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Context Menu (Right Click) -->
+            <div id="context-menu" class="context-menu hidden">
+                <div class="context-menu-item" data-action="refresh">
+                    <i class="fas fa-sync"></i>
+                    <span>Refresh</span>
+                </div>
+                <div class="context-menu-divider"></div>
+                <div class="context-menu-item" data-action="personalize">
+                    <i class="fas fa-palette"></i>
+                    <span>Personalize</span>
+                </div>
+                <div class="context-menu-item" data-action="display">
+                    <i class="fas fa-desktop"></i>
+                    <span>Display Settings</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript Files -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/desktop.js"></script>
+    <script src="js/taskbar.js"></script>
+    <script src="js/windowManager.js"></script>
+    <script src="js/apps.js"></script>
+</body>
+</html>
+

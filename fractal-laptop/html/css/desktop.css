@@ -1,0 +1,425 @@
+/* ====================================
+   DESKTOP
+   ==================================== */
+
+.desktop {
+    position: relative;
+    width: 80vw;
+    height: 80vh;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+}
+
+/* ====================================
+   WALLPAPER
+   ==================================== */
+
+.wallpaper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    transition: background-image var(--transition-slow);
+}
+
+/* Default Wallpaper (Gradient) */
+.wallpaper.default {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* ====================================
+   DESKTOP ICONS
+   ==================================== */
+
+.desktop-icons {
+    position: absolute;
+    top: var(--spacing-lg);
+    left: var(--spacing-lg);
+    width: calc(100% - var(--spacing-lg) * 2);
+    height: calc(100% - 80px - var(--spacing-lg) * 2); /* Minus taskbar height */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 100px);
+    grid-gap: var(--spacing-md);
+    align-content: start;
+    z-index: 2;
+    padding: var(--spacing-md);
+}
+
+.desktop-icon {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    position: relative;
+}
+
+.desktop-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.desktop-icon:active {
+    transform: scale(0.95);
+}
+
+.desktop-icon.selected {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.desktop-icon-image {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-sm);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.desktop-icon-image i {
+    font-size: 24px;
+    color: var(--primary);
+}
+
+.desktop-icon-label {
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Icon Colors */
+.desktop-icon-image[data-color="blue"] i { color: #4285F4; }
+.desktop-icon-image[data-color="red"] i { color: #EA4335; }
+.desktop-icon-image[data-color="yellow"] i { color: #FBBC04; }
+.desktop-icon-image[data-color="green"] i { color: #34A853; }
+.desktop-icon-image[data-color="purple"] i { color: #A142F4; }
+.desktop-icon-image[data-color="orange"] i { color: #FF6B35; }
+.desktop-icon-image[data-color="gray"] i { color: #5F6368; }
+
+/* VPN/Locked Icon Badge */
+.desktop-icon.locked::after {
+    content: '\f023'; /* Lock icon */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--error);
+    color: white;
+    border-radius: 50%;
+    font-size: 10px;
+}
+
+/* ====================================
+   CONTEXT MENU (Right Click)
+   ==================================== */
+
+.context-menu {
+    position: absolute;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--glass-shadow);
+    min-width: 220px;
+    padding: var(--spacing-sm);
+    z-index: 9998;
+    animation: fadeIn var(--transition-fast);
+}
+
+.context-menu-item {
+    padding: var(--spacing-sm) var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.context-menu-item:hover {
+    background: rgba(0, 120, 212, 0.1);
+    color: var(--primary);
+}
+
+.context-menu-item i {
+    width: 20px;
+    text-align: center;
+}
+
+.context-menu-divider {
+    height: 1px;
+    background: var(--glass-border);
+    margin: var(--spacing-sm) 0;
+}
+
+/* ====================================
+   START MENU
+   ==================================== */
+
+.start-menu {
+    position: absolute;
+    bottom: 90px;
+    left: var(--spacing-md);
+    width: 600px;
+    height: 650px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(30px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    z-index: 9997;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp var(--transition-normal);
+}
+
+.start-menu-header {
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.start-menu-header h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.start-menu-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.start-menu-search i {
+    position: absolute;
+    left: var(--spacing-md);
+    color: var(--text-secondary);
+}
+
+.start-menu-search input {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) 40px;
+}
+
+.start-menu-content {
+    flex: 1;
+    padding: var(--spacing-lg);
+    overflow-y: auto;
+}
+
+.start-menu-content h4 {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+    letter-spacing: 0.5px;
+}
+
+.start-menu-apps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: var(--spacing-md);
+}
+
+.start-menu-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.start-menu-app:hover {
+    background: rgba(0, 120, 212, 0.1);
+}
+
+.start-menu-app-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--glass-bg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-sm);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.start-menu-app-icon i {
+    font-size: 24px;
+}
+
+.start-menu-app-label {
+    font-size: 12px;
+    text-align: center;
+    color: var(--text-primary);
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.start-menu-footer {
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-top: 1px solid var(--glass-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    color: var(--text-primary);
+}
+
+.user-info i {
+    font-size: 32px;
+}
+
+.user-info span {
+    font-weight: 500;
+}
+
+.start-menu-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+/* ====================================
+   DARK MODE - DESKTOP & TASKBAR
+   ==================================== */
+
+/* Taskbar */
+body.dark-mode .taskbar {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--glass-border);
+}
+
+body.dark-mode .start-btn {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+body.dark-mode .start-btn:hover {
+    background: rgba(0, 120, 212, 0.2);
+}
+
+body.dark-mode .taskbar-app {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+body.dark-mode .taskbar-app:hover {
+    background: rgba(0, 120, 212, 0.2);
+}
+
+body.dark-mode .taskbar-app.active {
+    background: var(--primary);
+    color: white;
+}
+
+body.dark-mode .taskbar-right {
+    color: var(--text-primary);
+}
+
+body.dark-mode .vpn-indicator {
+    color: var(--text-secondary);
+}
+
+body.dark-mode .vpn-indicator.active {
+    color: var(--success);
+}
+
+/* Start Menu */
+body.dark-mode .start-menu {
+    background: var(--bg-primary);
+    border: 1px solid var(--glass-border);
+}
+
+body.dark-mode .start-menu-header {
+    border-bottom-color: var(--glass-border);
+}
+
+body.dark-mode .start-menu-search input {
+    background: var(--bg-secondary);
+    border-color: var(--glass-border);
+    color: var(--text-primary);
+}
+
+body.dark-mode .start-menu-app {
+    color: var(--text-primary);
+}
+
+body.dark-mode .start-menu-app:hover {
+    background: rgba(0, 120, 212, 0.2);
+}
+
+body.dark-mode .start-menu-footer {
+    border-top-color: var(--glass-border);
+}
+
+body.dark-mode .user-info {
+    color: var(--text-primary);
+}
+
+/* Desktop Icons */
+body.dark-mode .desktop-icon:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .desktop-icon.selected {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .desktop-icon-image {
+    background: var(--bg-secondary);
+}
+
+/* Context Menu */
+body.dark-mode .context-menu {
+    background: var(--bg-secondary);
+    border-color: var(--glass-border);
+}
+
+body.dark-mode .context-menu-divider {
+    background: var(--glass-border);
+}
+

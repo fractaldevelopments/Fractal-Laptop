@@ -10,15 +10,14 @@
 -- ===================================
 -- Stores each player's laptop settings, installed apps, and VPN status
 
-CREATE TABLE IF NOT EXISTS `laptop_data` (
-    `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `citizenid` VARCHAR(50) NOT NULL UNIQUE COMMENT 'Player CitizenID',
-    `settings` LONGTEXT NOT NULL DEFAULT '{}' COMMENT 'JSON encoded settings (wallpaper, theme, etc.)',
-    `installed_apps` LONGTEXT NOT NULL DEFAULT '[]' COMMENT 'JSON encoded list of installed apps',
-    `vpn_enabled` TINYINT(1) DEFAULT 0 COMMENT '1 = VPN active, 0 = VPN off',
-    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    KEY `citizenid` (`citizenid`)
+CREATE TABLE IF NOT EXISTS laptop_data (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    citizenid VARCHAR(50) NOT NULL UNIQUE COMMENT 'Player CitizenID',
+    settings LONGTEXT NOT NULL DEFAULT '{}' COMMENT 'JSON encoded settings (wallpaper, theme, etc.)',
+    installed_apps LONGTEXT NOT NULL DEFAULT '[]' COMMENT 'JSON encoded list of installed apps',
+    vpn_enabled TINYINT(1) DEFAULT 0 COMMENT '1 = VPN active, 0 = VPN off',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
 COMMENT='Stores player laptop settings and data';
 
@@ -228,4 +227,5 @@ COMMENT='Boss menu transaction history';
 -- 4. Restart laptop-os resource
 -- 5. Check server console for errors
 -- ===================================
+
 
